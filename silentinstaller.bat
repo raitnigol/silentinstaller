@@ -1,24 +1,30 @@
+:: silent installer script
+
 @echo off
 setlocal enableExtensions disableDelayedExpansion
 
-:: korrigeerime aja normaalsele kujule
+:: time to normal form
 for /F "tokens=2" %%i in ('date /t') do set mydate=%%i
 set mytime=%time%
 
-:: palume kasutajal .exe fail, mida soovitakse silent installida, tirida CMD-sse.
-echo ###########=====SILENT_INSTALLER=====###########
-echo ###########========= v1.0.0 =========###########
-set /p path="Tiri siia oma .exe installer, mille peal soovid kasutada silent installi: "
+:: get path 
+set /p path="Copy the path of .exe file here: "
 
-:: alustame silent installi.
-%path% /SP /VERYSILENT /SUPRESSMSGBOXES /NORESTART /S
+:: define silent install switches
+set "switches"="/sp /verysilent /supressmsgboxes /norestart /s"
 
-:: saadame log.txt-sse infot
-echo Alustan installi %path% parameetrite /SP /VERYSILENT /SUPRESSMSGBOXES /NORESTART ja /S
-echo %mydate%:%mytime% Alustan installi %path% parameetrite /SP /VERYSILENT /SUPRESSMSGBOXES /NORESTART ja /S >> log.txt
+:: start install 
+%path% %switches%
 
+:: send log.txt
+echo Starting install on %path% 
+echo %mydate%:%mytime% Installing %path%
+echo %mydate%:%mytime% Installing %path% >> log.txt
+
+:: end the script after installation
 :exit
 endlocal
 goto :eof
 
-:: kood on algeline, v6ib olla katkine.
+:: this script is very basic, might not work on some programs.
+:: works for Firefox, Google  Chrome, 7zip etc.
