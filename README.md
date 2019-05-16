@@ -1,2 +1,2 @@
 # silentinstaller
-silent installer windows 10-le
+Silent Installer for Windows 10 using CMD.
