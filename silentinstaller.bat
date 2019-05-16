@@ -10,16 +10,11 @@ set mytime=%time%
 :: get path 
 set /p path="Copy the path of .exe file here: "
 
-:: define silent install switches
-set "switches"="/sp /verysilent /supressmsgboxes /norestart /s"
-
-:: start install 
-%path% %switches%
+:: start installing 
+%path% /sp /verysilent /supressmsgboxes /norestart /s
 
 :: send log.txt
-echo Starting install on %path% 
-echo %mydate%:%mytime% Installing %path%
-echo %mydate%:%mytime% Installing %path% >> log.txt
+echo %mydate%:%mytime% Silent installing %path% (switches: /sp /verysilent /supressmsgboxes /norestart /s) >> log.txt
 
 :: end the script after installation
 :exit
